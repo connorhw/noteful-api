@@ -9,8 +9,6 @@ const notesRouter = require('./notes/notes-router')
 
 const app = express()
 
-
-//const morganOption = (process.env.NODE_ENV === 'production')
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
   : 'common';
@@ -22,12 +20,11 @@ app.use('/api/folders', foldersRouter)
 app.use('/api/notes', notesRouter)
 
 app.get('/', (req, res) => {
-    res.send('Hello, world! ..again')
+    res.send('Hello, world!')
 })
 
 app.use(function errorHandler(error, req, res, next) {
    let response
-   //if (process.env.NODE_ENV === 'production') {
    if (NODE_ENV === 'production') {
      response = { error: { message: 'server error' } }
    } else {
